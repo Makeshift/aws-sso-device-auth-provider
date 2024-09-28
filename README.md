@@ -9,12 +9,13 @@ Thanks to [this fantastic blog post](https://medium.com/@lex.berger/anatomy-of-a
 ## Installation
 
 Yarn: `yarn add aws-sso-device-auth-provider`
+
 Npm: `npm install aws-sso-device-auth-provider`
 
 ## Requirements
 
-The user intending to execute the AWS SSO Device Authorization flow must have an AWS SSO account with access to one or more AWS accounts.
-The user must also have a browser available to complete the device authorization flow. They will be prompted to visit a URL.
+- The user intending to execute the AWS SSO Device Authorization flow must have an AWS SSO account with access to one or more AWS accounts.
+- The user must also have a browser available to complete the device authorization flow. They will be prompted to visit a URL.
 
 That's it. No AWS CLI or other tools are required.
 
@@ -57,7 +58,8 @@ const credentials = await provider.getAwsCredentialIdentityProviderForRole({
   roleName: rolesForFirstAccount[0].roleName
 })
 
-// It caches the credentials based on the expiry time in the response, so this following call would return the same credentials
+// It caches the credentials based on the expiry time in the response,
+//  so this following call would return the same credentials
 const s3Client = new S3Client({
   region: 'eu-west-1',
   credentials: provider.getAwsCredentialIdentityProviderForRole({
