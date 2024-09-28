@@ -1,0 +1,29 @@
+{
+  "name": "aws-sso-device-auth-provider",
+  "main": "dist/index.js",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "files": [
+    "/dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@smithy/types": "^3.4.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sso": "^3.658.1",
+    "@aws-sdk/client-sso-oidc": "^3.658.1",
+    "@aws-sdk/client-sts": "^3.658.1",
+    "keyv": "^5.0.3",
+    "keyv-file": "^5.0.3",
+    "minimatch": "^10.0.1"
+  },
+  "packageManager": "yarn@1.22.22"
+}
