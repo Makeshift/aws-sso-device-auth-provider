@@ -1,0 +1,21 @@
+{
+  "name": "aws-sso-device-auth-provider-examples-s3-list",
+  "main": "index.ts",
+  "type": "module",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc",
+    "start": "yarn tsx index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.1",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.1",
+    "aws-sso-device-auth-provider": "^0.0.1"
+  },
+  "packageManager": "yarn@1.22.22"
+}

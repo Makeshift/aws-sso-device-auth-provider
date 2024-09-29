@@ -5,7 +5,12 @@ import Keyv from 'keyv'
 import { KeyvFile } from 'keyv-file'
 import { minimatch } from 'minimatch'
 import { homedir } from 'os'
-import { join, dirname } from 'path'
+import { dirname, join } from 'path'
+import { MultipleAccountsFoundError } from './error'
+import { Either } from './util-types'
+
+export * from './error'
+export * from './util-types'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 const unixNow = () => Math.floor(Date.now() / 1000)
@@ -13,6 +18,47 @@ const unixExpiresInMs = (seconds: number) => seconds * 1000
 const unixExpiresAtToExpiresInMs = (unixDate: number) => unixExpiresInMs(unixDate - unixNow())
 const msExpiresAtToExpiresInMs = (msDate: number) => msDate - Date.now()
 
+/**
+ * @hidden
+ */
+interface AccountName {
+  /**
+   * The name of the account to list roles for (can be a {@link https://github.com/isaacs/minimatch | Minimatch}-compatible glob)
+   */
+  accountName: string
+}
+
+/**
+ * @hidden
+ */
+interface AccountId {
+  /**
+   * The ID of the account to list roles for
+   */
+  accountId: number | string
+}
+
+/**
+ * A reference to an account, either by name or by ID
+ * @interface
+ */
+export type AccountRef = Either<AccountName, AccountId>
+
+/**
+ * A reference to a role in an account.
+ * One of either `roleName` or `accountId` must be provided.
+ * @interface
+ */
+export type RoleNameAndAccountRef = {
+  /**
+   * Filter the returned list of roles by role name (can be a {@link https://github.com/isaacs/minimatch | Minimatch}-compatible glob)
+   */
+  roleName: string
+} & AccountRef
+
+/**
+ * Options for the {@link AwsSsoDeviceAuthProvider} class constructor
+ */
 export interface AwsSsoDeviceAuthProviderOpts {
   /**
    * The URL to start the SSO login flow
@@ -37,14 +83,30 @@ export interface AwsSsoDeviceAuthProviderOpts {
   keyv?: Keyv
 }
 
-export type getAwsCredentialIdentityProviderForRoleOpts = { roleName: string } & ({ accountId: number | string } | { accountName: string })
-
+/**
+ * Provides temporary AWS credentials using the AWS SSO device authorization flow.
+ */
 export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
 
+  /**
+   * The Keyv store used by this instance to cache tokens and credentials
+   */
   keyv: Keyv
+  /**
+   * The options used by this instance during {@link getOrRegisterClient}
+   */
   registerClientOpts?: Partial<RegisterClientRequest>
+  /**
+   * The URL used by this instance to start the SSO login flow
+   */
   startUrl: string
+  /**
+   * The SSO OIDC client used by this instance
+   */
   ssoOidcClient: SSOOIDCClient
+  /**
+   * The SSO client used by this instance
+   */
   ssoClient: SSOClient
 
   /**
@@ -172,12 +234,10 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
 
   /**
    * Returns a list of accounts available to the authenticated user.
-   * @property opts
-   * @param opts.accountId Filter the returned list of accounts by account number
-   * @param opts.accountName Filter the returned list of accounts by account name (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob)
+   * @param opts
    * @returns A list of account names and numbers matching the provided filters.
    */
-  public async getAccounts({ accountId, accountName }: { accountId?: number | string, accountName?: string } = {}): Promise<AccountInfo[]> {
+  public async getAccounts({ accountId, accountName }: Partial<AccountRef> = {}): Promise<AccountInfo[]> {
     const accountListPaginator = paginateListAccounts({ client: this.ssoClient }, { accessToken: await this.getAccessToken() })
     let accountList: AccountInfo[] = []
 
@@ -201,33 +261,29 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
 
   /**
    * Returns the account ID for a single account with the given name. If multiple accounts are found, an error is thrown.
-   * @param accountName Filter the list of accounts by account name (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob)
+   * @param accountName Filter the list of accounts by account name (can be a {@link https://github.com/isaacs/minimatch | Minimatch}-compatible glob)
    * @returns The account ID of the account with the given name
+   * @throws {@link MultipleAccountsFoundError} if more than one account is found with the given name
    */
-  public async getSingleAccountIdWithName(accountName: string): Promise<string> {
+  public async getSingleAccountIdByName(accountName: string): Promise<string> {
     const accounts = await this.getAccounts({ accountName })
     if (accounts.length > 1) {
-      throw new Error(`More than one account found with name ${accountName}: ${accounts.map(account => account.accountName).join(', ')}`)
+      throw new MultipleAccountsFoundError(accountName, accounts)
     }
     return accounts[0].accountId!
   }
 
   /**
-   * Returns a list of roles available to the authenticated user for a given account ID.
-   * @property opts
-   * @param opts.accountId The ID of the account to list roles for
-   * @param opts.accountName The name of the account to list roles for (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob) (Note that this will require listing all accounts to find the correct one)
-   * @param opts.roleName Filter the returned list of roles by role name (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob)
+   * Returns a list of roles available to the authenticated user for a given account ref.
+   * @param opts
    * @returns An array of role names matching the provided filters, or all roles if no filters are provided.
    */
-  public async getRolesForAccount({ accountName, roleName }: { accountName: string, roleName?: string }): Promise<string[]>
-  public async getRolesForAccount({ accountId, roleName }: { accountId: number | string, roleName?: string }): Promise<string[]>
-  public async getRolesForAccount({ accountId, accountName, roleName }: { accountId?: number | string, accountName?: string, roleName?: string }): Promise<string[]> {
+  public async getRolesForAccount({ accountId, accountName, roleName }: Partial<RoleNameAndAccountRef>): Promise<string[]> {
     if (!accountId && !accountName) {
       throw new Error('Either accountId or accountName must be provided')
     }
     if (!accountId) {
-      accountId = await this.getSingleAccountIdWithName(accountName!)
+      accountId = await this.getSingleAccountIdByName(accountName!)
     }
 
     const accountRolePaginator = paginateListAccountRoles({ client: this.ssoClient }, { accessToken: await this.getAccessToken(), accountId: accountId.toString() })
@@ -250,20 +306,14 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
 
   /**
    * Returns temporary credentials for a given role in a given account.
-   * @property opts
-   * @param opts.accountId The ID of the account to get credentials for
-   * @param opts.accountName The name of the account to get credentials for (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob)
-   * @param opts.roleName The name of the role to get credentials for (must be an exact match - use {@link getRolesForAccount} to find roles by pattern first)
+   * @param opts
    */
-  public async getCredentialsForRole({ accountName, roleName }: { accountName: string, roleName: string }): Promise<Required<RoleCredentials>>
-  public async getCredentialsForRole({ accountId, roleName }: { accountId: number | string, roleName: string }): Promise<Required<RoleCredentials>>
-  public async getCredentialsForRole({ accountId, accountName, roleName }: { accountId?: number | string, accountName?: string, roleName: string }): Promise<Required<RoleCredentials>>
-  public async getCredentialsForRole({ accountId, accountName, roleName }: { accountId?: number | string, accountName?: string, roleName: string }): Promise<Required<RoleCredentials>> {
+  public async getCredentialsForRole({ accountId, accountName, roleName }: RoleNameAndAccountRef): Promise<Required<RoleCredentials>> {
     if (!accountId && !accountName) {
       throw new Error('Either accountId or accountName must be provided')
     }
     if (!accountId) {
-      accountId = await this.getSingleAccountIdWithName(accountName!)
+      accountId = await this.getSingleAccountIdByName(accountName!)
     }
 
     let credentials = await this.keyv.get<RoleCredentials>(`role_credentials_${accountId}_${roleName}`)
@@ -302,14 +352,11 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
    *     })
    *   })
    * ```
-   * @property opts
-   * @param opts.accountId The ID of the account to get credentials for
-   * @param opts.accountName The name of the account to get credentials for (can be a {@link https://github.com/isaacs/minimatch|Minimatch}-compatible glob)
-   * @param opts.roleName The name of the role to get credentials for (must be an exact match - use {@link getRolesForAccount} to find roles by pattern first)
+   * @param opts
    */
-  public async getAwsCredentialIdentityProviderForRole({ roleName, ...rest }: getAwsCredentialIdentityProviderForRoleOpts): Promise<AwsCredentialIdentityProvider> {
+  public async getAwsCredentialIdentityProviderForRole({ roleName, accountId, accountName }: RoleNameAndAccountRef): Promise<AwsCredentialIdentityProvider> {
     return async () => {
-      const credentials = await this.getCredentialsForRole({roleName, ...rest })
+      const credentials = await this.getCredentialsForRole({ roleName, accountId, accountName } as RoleNameAndAccountRef)
       return {
         ...credentials,
         // It randomly wants an actual date here instead of a unix time like the rest of the SDK
@@ -323,7 +370,7 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
    * @see {@link getAwsCredentialIdentityProviderForRole}
    * @see {@link AwsSsoDeviceAuthProvider}
    */
-  public static async getAwsCredentialIdentityProviderForRole(opts: AwsSsoDeviceAuthProviderOpts & getAwsCredentialIdentityProviderForRoleOpts): Promise<AwsCredentialIdentityProvider> {
+  public static async getAwsCredentialIdentityProviderForRole(opts: AwsSsoDeviceAuthProviderOpts & RoleNameAndAccountRef): Promise<AwsCredentialIdentityProvider> {
     const provider = new AwsSsoDeviceAuthProvider(opts)
     return provider.getAwsCredentialIdentityProviderForRole(opts)
   }

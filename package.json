@@ -9,12 +9,15 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "yarn tsc && yarn typedoc",
+    "release": "yarn build && yarn publish"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "@smithy/types": "^3.4.2",
+    "@types/node": "^20",
     "tsx": "^4.19.1",
+    "typedoc": "^0.26.7",
+    "typedoc-plugin-markdown": "^4.2.8",
     "typescript": "^5.0.0"
   },
   "dependencies": {

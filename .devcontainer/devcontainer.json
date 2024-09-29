@@ -30,7 +30,8 @@
 				"foxundermoon.shell-format",
 				"actboy168.tasks",
 				"gamunu.vscode-yarn",
-				"ms-vscode.js-debug-nightly"
+				"ms-vscode.js-debug-nightly",
+				"psulek-solo.typedoc-live-preview"
 			]
 		},
 		"postCreateCommand": "yarn install"

@@ -1,3 +1,7 @@
+**aws-sso-device-auth-provider** • [**Docs**](globals.md)
+
+***
+
 # AWS SSO Device Authorization Grant Provider
 
 This package provides a simple way to get credentials for AWS services using the AWS SSO device authorization grant flow. This is useful for CLI tools that need to access AWS services on behalf of a user.
@@ -68,7 +72,3 @@ const s3Client = new S3Client({
   })
 })
 ```
-
-## API Docs
-
-See [`./docs`](./docs).
