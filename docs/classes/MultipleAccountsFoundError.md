@@ -32,7 +32,7 @@
 
 #### Defined in
 
-src/error.ts:11
+[src/error.ts:11](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/error.ts#L11)
 
 ## Properties
 

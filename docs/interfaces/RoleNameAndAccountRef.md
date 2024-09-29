@@ -19,7 +19,7 @@ The ID of the account to list roles for
 
 #### Defined in
 
-[src/index.ts:38](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L38)
+[src/index.ts:38](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L38)
 
 ***
 
@@ -31,7 +31,7 @@ The name of the account to list roles for (can be a [Minimatch](https://github.c
 
 #### Defined in
 
-[src/index.ts:28](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L28)
+[src/index.ts:28](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L28)
 
 ***
 
@@ -43,4 +43,4 @@ Filter the returned list of roles by role name (can be a [Minimatch](https://git
 
 #### Defined in
 
-[src/index.ts:56](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L56)
+[src/index.ts:56](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L56)

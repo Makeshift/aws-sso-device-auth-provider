@@ -28,7 +28,7 @@ Provides temporary AWS credentials using the AWS SSO device authorization flow.
 
 #### Defined in
 
-[src/index.ts:378](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L378)
+[src/index.ts:378](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L378)
 
 ## Properties
 
@@ -44,7 +44,7 @@ The Keyv store used by this instance to cache tokens and credentials
 
 #### Defined in
 
-[src/index.ts:94](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L94)
+[src/index.ts:94](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L94)
 
 ***
 
@@ -60,7 +60,7 @@ The options used by this instance during [getOrRegisterClient](AwsSsoDeviceAuthP
 
 #### Defined in
 
-[src/index.ts:98](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L98)
+[src/index.ts:98](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L98)
 
 ***
 
@@ -76,7 +76,7 @@ The SSO client used by this instance
 
 #### Defined in
 
-[src/index.ts:110](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L110)
+[src/index.ts:110](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L110)
 
 ***
 
@@ -92,7 +92,7 @@ The SSO OIDC client used by this instance
 
 #### Defined in
 
-[src/index.ts:106](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L106)
+[src/index.ts:106](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L106)
 
 ***
 
@@ -108,7 +108,7 @@ The URL used by this instance to start the SSO login flow
 
 #### Defined in
 
-[src/index.ts:102](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L102)
+[src/index.ts:102](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L102)
 
 ## Methods
 
@@ -126,7 +126,7 @@ A saved access token, or a refreshed access token if we have a saved refresh tok
 
 #### Defined in
 
-[src/index.ts:225](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L225)
+[src/index.ts:225](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L225)
 
 ***
 
@@ -148,7 +148,7 @@ A list of account names and numbers matching the provided filters.
 
 #### Defined in
 
-[src/index.ts:240](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L240)
+[src/index.ts:240](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L240)
 
 ***
 
@@ -187,7 +187,7 @@ Can be used to provide credentials to the AWS SDK
 
 #### Defined in
 
-[src/index.ts:357](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L357)
+[src/index.ts:357](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L357)
 
 ***
 
@@ -207,7 +207,7 @@ Returns temporary credentials for a given role in a given account.
 
 #### Defined in
 
-[src/index.ts:311](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L311)
+[src/index.ts:311](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L311)
 
 ***
 
@@ -225,7 +225,7 @@ The client registration info
 
 #### Defined in
 
-[src/index.ts:141](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L141)
+[src/index.ts:141](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L141)
 
 ***
 
@@ -247,7 +247,7 @@ An array of role names matching the provided filters, or all roles if no filters
 
 #### Defined in
 
-[src/index.ts:281](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L281)
+[src/index.ts:281](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L281)
 
 ***
 
@@ -275,7 +275,7 @@ The account ID of the account with the given name
 
 #### Defined in
 
-[src/index.ts:268](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L268)
+[src/index.ts:268](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L268)
 
 ***
 
@@ -293,7 +293,7 @@ The new access token
 
 #### Defined in
 
-[src/index.ts:185](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L185)
+[src/index.ts:185](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L185)
 
 ***
 
@@ -318,7 +318,7 @@ The new access token
 
 #### Defined in
 
-[src/index.ts:162](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L162)
+[src/index.ts:162](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L162)
 
 ***
 
@@ -340,7 +340,7 @@ An error thrown by the SSO OIDC service
 
 #### Defined in
 
-[src/index.ts:116](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L116)
+[src/index.ts:116](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L116)
 
 ***
 
@@ -365,4 +365,4 @@ Convenience static method to create an AwsCredentialIdentityProvider for a given
 
 #### Defined in
 
-[src/index.ts:373](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/1502a69f9a34b6b1b54532cf1de074960c2f022e/src/index.ts#L373)
+[src/index.ts:373](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L373)

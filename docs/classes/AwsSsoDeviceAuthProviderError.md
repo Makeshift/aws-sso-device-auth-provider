@@ -34,7 +34,7 @@
 
 #### Defined in
 
-src/error.ts:4
+[src/error.ts:4](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/error.ts#L4)
 
 ## Properties
 

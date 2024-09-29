@@ -72,3 +72,7 @@ const s3Client = new S3Client({
   })
 })
 ```
+
+## API Docs
+
+See [`./docs`](./docs).
