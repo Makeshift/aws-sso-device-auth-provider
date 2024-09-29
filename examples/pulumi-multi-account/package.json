@@ -1,11 +1,12 @@
 {
-  "name": "aws-sso-device-auth-provider-examples-s3-list",
+  "name": "aws-sso-device-auth-provider-examples-pulumi-multi-account",
   "main": "index.ts",
   "type": "module",
   "version": "0.0.0",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
-    "start": "yarn tsx index.ts"
+    "start": "pulumi up --stack dev"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -13,7 +14,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.658.1",
+    "@pulumi/aws": "^6.54.0",
+    "@pulumi/pulumi": "^3.134.1",
     "aws-sso-device-auth-provider": "*"
   },
   "packageManager": "yarn@1.22.22"

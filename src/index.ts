@@ -334,6 +334,15 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
   }
 
   /**
+   * Convenience static method to return {@link RoleCredentials} for a given role in a given account using the given startURL in a single call.
+   * @see {@link AwsSsoDeviceAuthProvider.getCredentialsForRole}
+   */
+  public static async getCredentialsForRole(opts: AwsSsoDeviceAuthProviderOpts & RoleNameAndAccountRef): Promise<Required<RoleCredentials>> {
+    const provider = new AwsSsoDeviceAuthProvider(opts)
+    return provider.getCredentialsForRole(opts)
+  }
+
+  /**
    * Returns an {@link AwsCredentialIdentityProvider} that can be used to provide credentials for a given role in a given account.
    * Can be used to provide credentials to the AWS SDK
    * @example

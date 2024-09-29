@@ -1,0 +1,9 @@
+name: aws-sso-device-auth-provider-examples-pulumi-multi-account
+runtime:
+  name: nodejs
+  options:
+    # Because we use modules, we want to use tsx as our ts interpreter instead of the default ts-node
+    nodeargs: --import tsx
+    # This is a lie
+    typescript: false
+

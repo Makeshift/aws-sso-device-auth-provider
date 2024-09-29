@@ -18,7 +18,7 @@ Pass a custom Keyv store, eg to use a different storage backend
 
 #### Defined in
 
-[src/index.ts:83](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L83)
+[src/index.ts:83](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/627ac68abb82828067ed511c54022a5789d01ce6/src/index.ts#L83)
 
 ***
 
@@ -30,7 +30,7 @@ Options to pass to the RegisterClientCommand
 
 #### Defined in
 
-[src/index.ts:71](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L71)
+[src/index.ts:71](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/627ac68abb82828067ed511c54022a5789d01ce6/src/index.ts#L71)
 
 ***
 
@@ -42,7 +42,7 @@ Pass your own SSOClient instance for us to use.
 
 #### Defined in
 
-[src/index.ts:79](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L79)
+[src/index.ts:79](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/627ac68abb82828067ed511c54022a5789d01ce6/src/index.ts#L79)
 
 ***
 
@@ -54,7 +54,7 @@ Pass your own SSOOIDCClient instance for us to use.
 
 #### Defined in
 
-[src/index.ts:75](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L75)
+[src/index.ts:75](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/627ac68abb82828067ed511c54022a5789d01ce6/src/index.ts#L75)
 
 ***
 
@@ -72,4 +72,4 @@ https://company.awsapps.com/start
 
 #### Defined in
 
-[src/index.ts:67](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/ce03dd5981e003816ff40106aeb33fb5cd73087b/src/index.ts#L67)
+[src/index.ts:67](https://github.com/Makeshift/aws-sso-device-auth-provider/blob/627ac68abb82828067ed511c54022a5789d01ce6/src/index.ts#L67)

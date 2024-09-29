@@ -75,4 +75,4 @@ const s3Client = new S3Client({
 
 ## API Docs
 
-See [`./docs`](./docs).
+See [`./docs`](_media/AwsSsoDeviceAuthProvider.md).

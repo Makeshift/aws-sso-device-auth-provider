@@ -34,7 +34,7 @@
 				"psulek-solo.typedoc-live-preview"
 			]
 		},
-		"postCreateCommand": "yarn install"
+		"postCreateCommand": "yarn install && yarn build && cd examples && yarn install"
 	}
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

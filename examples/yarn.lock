@@ -1215,10 +1215,10 @@
   dependencies:
     undici-types "~6.19.2"
 
-aws-sso-device-auth-provider@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/aws-sso-device-auth-provider/-/aws-sso-device-auth-provider-0.0.1.tgz#cab45be9dfe14d35a17cd478d304a0bc95402909"
-  integrity sha512-v4VqlKeN8DzsOMQ4omLh2lSibUO7Q2ZPgGT2Hq76Lbt62cpZvBzHu+xF7qzd0NJ1T3WfNdaPGZZSKu9Kzk/sGg==
+aws-sso-device-auth-provider@*:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/aws-sso-device-auth-provider/-/aws-sso-device-auth-provider-0.0.2.tgz#f8a3bc61a5a4dfb38c1c3abafda04c52186b33c7"
+  integrity sha512-mrLNMsOAWJ2ujEYTUmhQHw/GF2SHvNOHZSJ0mAIxcbWkf1x2Zh91MlZ4+LoN5rqOFfWQEOqnIMLcK+EMPqOqTA==
   dependencies:
     "@aws-sdk/client-sso" "^3.658.1"
     "@aws-sdk/client-sso-oidc" "^3.658.1"

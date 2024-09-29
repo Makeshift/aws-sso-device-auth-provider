@@ -2,15 +2,15 @@
   "name": "aws-sso-device-auth-provider",
   "main": "dist/index.js",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "UNLICENSED",
   "files": [
     "/dist",
     "README.md"
   ],
   "scripts": {
-    "build": "yarn tsc && yarn typedoc",
-    "release": "yarn build && yarn publish"
+    "build": "yarn tsc",
+    "release": "yarn build && yarn typedoc  && yarn publish"
   },
   "devDependencies": {
     "@smithy/types": "^3.4.2",
