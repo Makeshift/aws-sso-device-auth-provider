@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "yarn tsc",
-    "release": "yarn build && yarn typedoc  && yarn publish"
+    "release": "yarn build && yarn typedoc && yarn publish"
   },
   "devDependencies": {
     "@smithy/types": "^3.4.2",

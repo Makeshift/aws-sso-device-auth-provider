@@ -190,6 +190,7 @@ export class AwsSsoDeviceAuthProvider implements AwsSsoDeviceAuthProviderOpts {
       startUrl: this.startUrl
     })
     const deviceAuthorizationResponse = await this.ssoOidcClient.send(startDeviceAuthorizationCommand)
+    await this.keyv.set(`attempted_device_authorization_${registrationInfo.clientId}_${this.startUrl}`, deviceAuthorizationResponse, unixExpiresInMs(deviceAuthorizationResponse.expiresIn!))
     console.log('Please visit', deviceAuthorizationResponse.verificationUriComplete)
     console.log('Now polling for authentication...\n')
     while (true) {

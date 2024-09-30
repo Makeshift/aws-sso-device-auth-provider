@@ -8,6 +8,9 @@
     "s3-list": "cd s3-list && yarn start && cd ..",
     "pulumi-multi-account": "yarn tsx pulumi-multi-account/index.ts"
   },
+  "resolutions": {
+    "aws-sso-device-auth-provider": "^0.0.3"
+  },
   "devDependencies": {
     "@types/node": "^20",
     "tsx": "^4.19.1",

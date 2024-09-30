@@ -16,7 +16,7 @@
   "dependencies": {
     "@pulumi/aws": "^6.54.0",
     "@pulumi/pulumi": "^3.134.1",
-    "aws-sso-device-auth-provider": "*"
+    "aws-sso-device-auth-provider": "^0.0.3"
   },
   "packageManager": "yarn@1.22.22"
 }
